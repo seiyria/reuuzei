@@ -41,7 +41,7 @@ class AppPreferences(private val context: Context) {
         set(value) = preferences.edit { putString(CATEGORY, value) }
 
     var imagesCountIndex: Int
-        get() = preferences.getInt(IMAGES_COUNT, 1)
+        get() = preferences.getInt(IMAGES_COUNT, 10)
         set(value) = preferences.edit { putInt(IMAGES_COUNT, value) }
 
     var imagesCount: Int = 1

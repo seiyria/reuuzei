@@ -1,6 +1,7 @@
 package com.seiyria.reuuzei.presentation.muzei
 
 import android.content.Context
+import android.util.Log
 import androidx.core.net.toUri
 import androidx.work.Constraints
 import androidx.work.NetworkType
@@ -44,7 +45,7 @@ class PhotosWorker(
                 albumId = prefs.album,
                 category = prefs.category,
                 pageToken = prefs.pageToken,
-                pageSize = prefs.imagesCount
+                pageSize = 50
             )
         } catch (e: IOException) {
             null
@@ -52,9 +53,10 @@ class PhotosWorker(
 
         response?.let {
             prefs.pageToken = it.nextPageToken
+
             onPhotosResult(
                 if (prefs.shuffle) {
-                    it.mediaItems.shuffled()
+                    it.mediaItems.shuffled().subList(0, it.mediaItems.size / 5)
                 } else {
                     it.mediaItems
                 }

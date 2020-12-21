@@ -35,5 +35,7 @@
         <item>40</item>
         <item>45</item>
         <item>50</item>
+        <item>75</item>
+        <item>100</item>
     </string-array>
 </resources>
